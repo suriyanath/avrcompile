@@ -2,6 +2,7 @@ from flask import Flask, request
 from werkzeug.utils import secure_filename
 import os, random, string
 import shutil
+from subprocess import PIPE, Popen
 
 app = Flask(__name__)
 
@@ -18,22 +19,32 @@ def allowed_file(filename):
 
 @app.route('/', methods = ['POST'])
 def compile():
+    board = request.form.get('board')
     file = request.files['file']
     if allowed_file(file.filename):
-        board = request.headers.get('board')
-        filename = rand()+secure_filename(file.filename)
+        #board = request.headers.get('board')
+        randomness = str(rand())
+        filename = randomness+secure_filename(file.filename)
         directory=filename[0:len(filename)-4]
         project = "Files/"+directory
         os.mkdir(project)
         file.save(project+"/"+filename)
-        os.popen("./arduino-cli compile --fqbn arduino:avr:"+board+" "+project).read()
-        hexval = open(project+"/build/arduino.avr."+board+"/"+directory+".ino.hex").read()
-        print(project)
+        p = Popen("./arduino-cli compile --fqbn arduino:avr:"+board+" "+project, shell=True, stdout=PIPE, stderr=PIPE)
+        stdout, stderr = p.communicate()
+        print("stdout: '%s'" % stdout)
+        print("stderr: '%s'" % stderr)
+        output=str(stderr)
+        print(output)
+        output = output.replace(os.getcwd()+"/"+project+"/"+randomness, "")
+        
+        print("output: '%s'" % output)
+        if output == "b''":
+            output = open(project+"/build/arduino.avr."+board+"/"+directory+".ino.hex").read()
+            print(project)
         remove(project)
-        return hexval
+        output = output.replace("b\"", "ERROR: ")
+        return output
     return "Please send a valid file"
-    #output = stream.read()
-    #return output
 
 def remove(mydir):
     try:
