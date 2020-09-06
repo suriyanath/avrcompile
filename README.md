@@ -35,7 +35,7 @@ GET : http://host:5000/test
 Compiler usage:
 ```
 POST: http://host:5000/ 
-      BODY (form-data): key: board, value: uno | key: file, value: xxxx.ino
+      BODY (form-data): key: board, value(String): uno | key: file, value(File): xxxx.ino
 ```
 
 # READY to use DOCKER Image
