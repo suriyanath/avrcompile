@@ -16,7 +16,7 @@ pip3 install flask
 # Usage
 Clone the code and launch 
 ```
-git clone https://github.com/suriyanath/avrcompile
+git clone https://github.com/suriyanath/avrcompile.git
 cd avrcompile
 chmod 777 Run.sh
 ./Run.sh
