@@ -13,7 +13,7 @@ Install Flask (This code was tested on Flask 1.1.2)
 pip3 install flask
 ```
 
-# Usage
+# Run Server
 Clone the code and launch 
 ```
 git clone https://github.com/suriyanath/avrcompile.git
@@ -27,6 +27,16 @@ nohup ./Run.sh 2>1 &
 ```
 Internally this Flask webserver uses arduino-cli from Arduino.
 
+# Usage
+Test URL:
+```
+GET : http://host:5000/test
+```
+Compiler usage:
+```
+POST: http://host:5000/ 
+      BODY (form-data): key: board, value: uno | key: file, value: xxxx.ino
+```
 
 # READY to use DOCKER Image
 ```
