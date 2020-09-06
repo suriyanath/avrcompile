@@ -13,5 +13,7 @@ Internally this Flask webserver uses arduino-cli from Arduino.
 
 
 # READY to use DOCKER Image
-docker run -d -it -p 5000:5000 suriyanath/ubuntucompiler:1.0
+```
+docker run -d -it -p 5000:5000 suriyanath/ubuntucompiler:1.0 
+```
 Source: https://hub.docker.com/repository/docker/suriyanath/ubuntucompiler
