@@ -46,6 +46,7 @@ Source: https://hub.docker.com/repository/docker/suriyanath/ubuntucompiler
 
 
 # Launch the compiler server in a laptop without internet usage
+Below command will create an hotspot connection
 ```
 nmcli device wifi hotspot con-name my-hotspot ssid my-hotspot band bg password secretpassword
 ```
