@@ -43,3 +43,21 @@ POST: http://host:5000/
 docker run -d -it -p 5000:5000 suriyanath/ubuntucompiler:1.0 
 ```
 Source: https://hub.docker.com/repository/docker/suriyanath/ubuntucompiler
+
+
+# Launch the compiler server in a laptop without internet usage
+```
+nmcli device wifi hotspot con-name my-hotspot ssid my-hotspot band bg password secretpassword
+```
+Connect to the WIFI hotspot "my-hotspot" in android smartphone with password "secretpassword". Then use ifconfig command to find the ip address of wifi interface, in my case interface name is wlp7s0 and IP address is 10.42.0.1 as shown below,
+```
+wlp7s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.42.0.1  netmask 255.255.255.0  broadcast 10.42.0.255
+        inet6 fe80::9201:4egf:fed2:912  prefixlen 64  scopeid 0x20<link>
+        ether 90:00:4e:d2:07:13  txqueuelen 1000  (Ethernet)
+        RX packets 472455  bytes 560402276 (560.4 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 241045  bytes 69396555 (69.3 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+```
+Thus the host URL is - http://10.42.0.1:5000 
