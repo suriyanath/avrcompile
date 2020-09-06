@@ -10,3 +10,8 @@ Clone the code and launch "./Run.sh"
 To run in background even on ssh exit use "nohup ./Run.sh 2>1 &"
 
 Internally this Flask webserver uses arduino-cli from Arduino.
+
+
+# READY to use DOCKER Image
+docker run -d -it -p 5000:5000 suriyanath/ubuntucompiler:1.0
+Source: https://hub.docker.com/repository/docker/suriyanath/ubuntucompiler
